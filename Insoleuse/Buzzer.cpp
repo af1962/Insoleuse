@@ -1,9 +1,5 @@
 #include "Buzzer.h"
 
-Buzzer::Buzzer()
-{
-    pinMode(10, OUTPUT);
-}
 
 void Buzzer::BuzzerOn(int r, int n, int f)
 {

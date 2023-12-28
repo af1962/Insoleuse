@@ -51,7 +51,7 @@ NexTouch* nex_listen_list[] = {
 
 //-------Variables-------//
 int
-duree = 45,                 // Durée temps insolation par d�faut
+duree = 45,                 // Durée temps insolation par défaut
 inc = 15;                   // Incrément de la tempo
 
 char texte[16];           // Tableau de caractére pour affiche de texte dans Nextion
@@ -68,11 +68,6 @@ unsigned long previousMillis = 0;
 unsigned long currentMillis;
 const long interval = 1000;
 
-
-bool
-etatRetroEclairage;
-
-
 //-VOID SETUP
 void setup()
 {
@@ -80,7 +75,7 @@ void setup()
  
     Serial.begin(9600);
 
-    while (!Serial)    // D�lai n�cessaire pour laisser le temps � l'�cran de d�marrer et initialiser les variables
+    while (!Serial)    // Délai nécessaire pour laisser le temps à l'écran de démarrer et initialiser les variables
     {
         ;
     }
@@ -103,18 +98,16 @@ void setup()
     bpEmoins.attachPush(bpEmoinsPushCallback, &bpEmoins);
     bpRetro.attachPush(bpRetroPushCallback, &bpRetro);
 
-    // Affichage par d�faut
+    // Affichage par défaut
     sprintf(texte, "%s", "Photogravure");
     txtMode.setText(texte);
     c.Affiche(duree);
-    //txtMode.setText("Photogravure");
 }
 
 // Fin d'exposition
-void Fin(String message)
+void Fin()
 {
     page1.show();
-    digitalWrite(pinUV, LOW);
     nexprogress.setValue(0);
     if (dual_stateBuzzer == 1)
     {
@@ -154,7 +147,7 @@ void bpCircuitPushCallback(void* ptr)
 }
 
 
-// Fonction incr�mentation Lent/Rapide
+// Fonction incrémentation Lent/Rapide
 void bpIncPushCallback(void* ptr)
 {
     bpInc.getValue(&dual_stateInc);
@@ -169,14 +162,14 @@ void bpIncPushCallback(void* ptr)
     }
 }
 
-// Fonction incr�mentation tempo
+// Fonction incrémentation tempo
 void bpPlusPushCallback(void* ptr)
 {
     duree = duree + inc;
     c.Affiche(duree);
 }
 
-// Fonction d�cr�mentation tempo
+// Fonction décrémentation tempo
 void bpMoinsPushCallback(void* ptr)
 {
     duree = duree - inc;
@@ -205,7 +198,7 @@ void bpStartPushCallback(void* ptr)
         nexprogress.setImgppic(7);
     }
     MarcheUV();
-    Fin("Fin");
+    Fin();
 }
 
 // Marche des UV 
@@ -226,7 +219,7 @@ void MarcheUV()
      digitalWrite(pinUV, LOW);
 }
 
-// Eclairage : R�cup�re l'�tat du bouton 1 ou 0
+// Eclairage : Récupère l'état du bouton 1 ou 0
 void bpLumierePushCallback(void* ptr)
 {    
     bpLumiere.getValue(&dual_stateEclairage);
@@ -245,13 +238,13 @@ void bpEmoinsPushCallback(void* ptr)
     lum.LumMoins(dual_stateEclairage);
 }
 
-// Buzzer marche/arr�t
+// Buzzer marche/arrét
 void bpBuzzerPushCallback(void* ptr)
 {       
     bpBuzzer.getValue(&dual_stateBuzzer); 
 }
 
-// R�tro�clairage   
+// Rétroéclairage   
 void bpRetroPushCallback(void* ptr)
 {       
     bpRetro.getValue(&dual_stateRetroEclairage);

@@ -3,6 +3,5 @@
 class Buzzer
 {
 public:
-	Buzzer();
 	void BuzzerOn(int r, int n, int f);
 };

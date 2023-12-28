@@ -1,5 +1,5 @@
 #include <Arduino.h>
-#define pinEclairage 4
+#define pinEclairage 11
 #define pinRetroEclairage 3
 
 class Luminosite
@@ -13,6 +13,5 @@ public:
 	void LumMoins(uint32_t e);
 	void Eclairage(uint32_t e);
 	void RetroEclairage(uint32_t e);
-
 };
 

@@ -45,6 +45,6 @@ void Luminosite::Eclairage(uint32_t e)
 // Retro�clairage e=�tat du bouton
 void Luminosite::RetroEclairage(uint32_t e)
 {
-    analogWrite(pinRetroEclairage, 200 * e);   
+    analogWrite(pinRetroEclairage, 80 * e);   
 }
 
