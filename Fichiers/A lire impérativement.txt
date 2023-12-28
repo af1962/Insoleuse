@@ -1,0 +1,2 @@
+1 - Remplacer les fichiers de la librairie Nextion (ITEADLIB_Arduino_Nextion-master) d'origine par les fichiers du dossier Nextion_Lib
+2 - La carte est réalisée avec Kicad.
